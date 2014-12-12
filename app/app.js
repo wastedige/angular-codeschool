@@ -12,15 +12,24 @@
     this.products = gems;
   });
 
-  app.controller("TabController", function() {
-    this.tab = 1;
+  // The TabsController has been moved to inside the new directive
+  app.directive("productTabs", function() {
+    return {
+      restrict: 'E',
+      templateUrl: "product-tabs.html",      
+      controllerAs: 'tab',
+      controller: function() {
+        this.tab = 1;
 
-    this.isSet = function(checkTab) {
-      return this.tab === checkTab;
-    };
+        this.isSet = function(checkTab) {
+          return this.tab === checkTab;
+        };
 
-    this.setTab = function(setTab) {
-      this.tab = setTab;
+        this.setTab = function(setTab) {
+          this.tab = setTab;
+        };
+      },
+      
     };
   });
 
@@ -35,10 +44,10 @@
 
   });
 
-  app.directive("productDescriptions", function() {
+  app.directive("productDescription", function() {
     return {
       restrict: 'E',
-      templateUrl: "product-descriptions.html"
+      templateUrl: "product-description.html"
     };
   });
 
@@ -51,10 +60,10 @@
 
   app.directive("productSpecs", function() {
     return {
-      restrict: 'A',
+      restrict:"A",
       templateUrl: "product-specs.html"
     };
-  });  
+  });
 
   var gems = [
     {
